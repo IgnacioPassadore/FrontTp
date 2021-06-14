@@ -12,11 +12,32 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class BuscadorComponent implements OnInit {
 
-  //FormFiltro: FormGroup;
-  constructor(/*public formBuilder: FormBuilder,*/) { }
+  FormFiltro: FormGroup | undefined;
+  //FormRes: FormGroup | undefined;
+  ranking: RankingDocumento[]= [];
+  totalPag: number =0;
+  totalDocumentos:number=0;
+  pagina: number=0;
+  cargados:boolean=false;
+  constructor(public formBuilder: FormBuilder, private busquedaService: BusquedasService) { }
 
   ngOnInit(): void {
-    //this.FormFiltro = this.formBuilder;
+    this.FormFiltro=this.formBuilder.group({consulta:[""]});
+    //this.FormRes = this.formBuilder.group({
+    //  Titulo: [""],
+    //  Url:[""],
+    //  IR:[null]});
+  }
+  buscarDocumentos():void{
+    let consultaRequest: ConsultaRequest = new ConsultaRequest();
+    consultaRequest.consulta= this.FormFiltro?.controls.consulta.value;
+    consultaRequest.page= this.pagina;
+    this.busquedaService.BuscarDocumentos(consultaRequest).subscribe((data)=>{
+      this.ranking=data.content as RankingDocumento[];
+      this.totalPag=data.totalPages;
+      this.totalDocumentos=data.totalElements;
+      this.cargados=true;
+    })
   }
 
 }

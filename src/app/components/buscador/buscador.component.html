@@ -1,7 +1,7 @@
 <form name="FormFiltro" [formGroup]='FormFiltro' class="bg-light">
     <div class="form-group row">
         <label class="col-form-label col-sm-2 col-sm-offset-1">
-            Nombre:
+            Consulta:
         </label>
     </div>
     <!-- Botones -->
@@ -15,18 +15,32 @@
         </button>
     </div>
 </form>
-<div id="divTablaResultados" *ngIf="Lista?.length > 0">
+<div id="divTablaResultados" *ngIf="ranking?.length > 0">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th class="text-center">Nombre</th>
-                <th class="text-center">Precio</th>
+                <th class="text-center">Titulo</th>
+                <th class="text-center">Url</th>
+                <th class="text-center">IR</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let dto of Lista">
-                <td>{{dto.Nombre}}</td>
+            <tr *ngFor="let dto of ranking">
+                <td>{{dto.Titulo}}</td>
+                <td>{{dto.Url}}</td>
+                <td>{{dto.IR}}</td>
             </tr>
         </tbody>
     </table>
+    <!-- Paginador-->
+    <div id="divPaginador" class="col-sm-12">
+        <div class="row bg-light">
+            <div class="col-sm-3">
+                <span class="label label-default font-weight-bold">Registros: {{totalDocumentos}}</span>
+            </div>
+            <div class="col-sm-6 text-center">
+                <ngb-pagination [(page)]="pagina" (pageChange)="buscarDocumentos()" [pageSize]="totalPag" [maxSize]="totalPag" [collectionSize]="totalDocumentos"></ngb-pagination>
+            </div>
+        </div>
+    </div>
 </div>
