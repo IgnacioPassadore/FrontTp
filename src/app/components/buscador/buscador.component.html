@@ -6,10 +6,10 @@
     </div>
     <!-- Botones -->
     <div class="row justify-content-center">
-        <button type="button" class="btn btn-primary" (click)="">
+        <button type="button" class="btn btn-primary" (click)="buscarDocumentos()">
             <span class="fas fa-search"> </span> Consultar
         </button> &nbsp;
-        <button type="button" class="btn btn-primary" (click)="">
+        <button type="button" class="btn btn-primary">
             <span class="fas fa-plus"> </span> 
             Agregar
         </button>
@@ -26,9 +26,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let dto of ranking">
-                <td>{{dto.Titulo}}</td>
-                <td>{{dto.Url}}</td>
-                <td>{{dto.IR}}</td>
+                <td>{{dto.documento.titulo}}</td>
+                <td>{{dto.documento.url}}</td>
+                <td>{{dto.indiceRanking}}</td>
             </tr>
         </tbody>
     </table>

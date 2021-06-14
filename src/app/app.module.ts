@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HomeComponent } from './components/home/home.component';  
+import { HomeComponent } from './components/home/home.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';  
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,10 @@ import { HomeComponent } from './components/home/home.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
