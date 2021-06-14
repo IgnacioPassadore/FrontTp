@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { BusquedasService } from 'src/app/services/BusquedasService';
+import { ConsultaRequest } from 'src/app/models/ConsultaRequest';
+import { Documento } from 'src/app/models/Documento';
+import { RankingDocumento } from 'src/app/models/RankingDocumento';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-buscador',
@@ -7,9 +12,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuscadorComponent implements OnInit {
 
-  constructor() { }
+  //FormFiltro: FormGroup;
+  constructor(public formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
+    //this.FormFiltro = this.formBuilder;
   }
 
 }
