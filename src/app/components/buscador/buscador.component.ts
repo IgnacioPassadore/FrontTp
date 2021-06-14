@@ -22,7 +22,7 @@ export class BuscadorComponent implements OnInit {
   constructor(public formBuilder: FormBuilder, private busquedaService: BusquedasService) { }
 
   ngOnInit(): void {
-    this.FormFiltro=this.formBuilder.group({consulta:[""]});
+    //this.FormFiltro=this.formBuilder.group({consulta:[""]});
     //this.FormRes = this.formBuilder.group({
     //  Titulo: [""],
     //  Url:[""],
