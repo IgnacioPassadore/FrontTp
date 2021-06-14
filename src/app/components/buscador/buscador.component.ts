@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class BuscadorComponent implements OnInit {
 
-  FormFiltro: FormGroup | undefined;
+  FormFiltro: FormGroup= this.formBuilder.group({consulta:[""]});
   //FormRes: FormGroup | undefined;
   ranking: RankingDocumento[]= [];
   totalPag: number =0;
