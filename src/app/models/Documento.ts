@@ -1,4 +1,4 @@
-export class Documento: {
-    titulo: string;
-    url: string;
+export class Documento {
+    titulo!: string;
+    url!: string;
     }

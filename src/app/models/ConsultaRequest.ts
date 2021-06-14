@@ -1,4 +1,4 @@
 export class ConsultaRequest {
-  consulta: string;
-  page: number;
+  consulta!: string;
+  page!: number;
  }
