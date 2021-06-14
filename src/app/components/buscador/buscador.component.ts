@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class BuscadorComponent implements OnInit {
 
   //FormFiltro: FormGroup;
-  constructor(public formBuilder: FormBuilder,) { }
+  constructor(/*public formBuilder: FormBuilder,*/) { }
 
   ngOnInit(): void {
     //this.FormFiltro = this.formBuilder;

@@ -1,1 +1,32 @@
-<p>buscador works!</p>
+<form name="FormFiltro" [formGroup]='FormFiltro' class="bg-light">
+    <div class="form-group row">
+        <label class="col-form-label col-sm-2 col-sm-offset-1">
+            Nombre:
+        </label>
+    </div>
+    <!-- Botones -->
+    <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary" (click)="">
+            <span class="fas fa-search"> </span> Consultar
+        </button> &nbsp;
+        <button type="button" class="btn btn-primary" (click)="">
+            <span class="fas fa-plus"> </span> 
+            Agregar
+        </button>
+    </div>
+</form>
+<div id="divTablaResultados" *ngIf="Lista?.length > 0">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dto of Lista">
+                <td>{{dto.Nombre}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
