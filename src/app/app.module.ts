@@ -8,13 +8,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';  
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IndexadorComponent } from './components/indexador/indexador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BuscadorComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    IndexadorComponent
   ],
   imports: [
     BrowserModule,

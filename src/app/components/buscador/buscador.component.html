@@ -1,46 +1,46 @@
-<form name="FormFiltro" [formGroup]='FormFiltro' class="bg-light">
-    <div class="form-group row">
-        <label class="col-form-label col-sm-2 col-sm-offset-1">
-            Consulta:
-        </label>
-    </div>
-    <!-- Botones -->
-    <div class="row justify-content-center">
-        <button type="button" class="btn btn-primary" (click)="buscarDocumentos()">
-            <span class="fas fa-search"> </span> Consultar
-        </button> &nbsp;
-        <button type="button" class="btn btn-primary">
-            <span class="fas fa-plus"> </span> 
-            Agregar
-        </button>
-    </div>
-</form>
-<div id="divTablaResultados" *ngIf="cargados">
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th class="text-center">Titulo</th>
-                <th class="text-center">Url</th>
-                <th class="text-center">IR</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let dto of ranking">
-                <td>{{dto.documento.titulo}}</td>
-                <td>{{dto.documento.url}}</td>
-                <td>{{dto.indiceRanking}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- Paginador-->
-    <div id="divPaginador" class="col-sm-12">
-        <div class="row bg-light">
-            <div class="col-sm-3">
-                <span class="label label-default font-weight-bold">Registros: {{totalDocumentos}}</span>
+<div class="container-fluid bg-light">
+    <form name="FormFiltro" [formGroup]='FormFiltro' (ngSubmit)="buscarDocumentos()">
+        <div class="form-group row text-center">
+            <img class="img-fluid mx-auto d-blocks" style="width: 50%;" src="assets/img/logo-utn.png">
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control m-4" placeholder="Consulta..." formControlName="consulta">
             </div>
-            <div class="col-sm-6 text-center">
-                <ngb-pagination [(page)]="pagina" (pageChange)="buscarDocumentos()" [pageSize]="totalPag" [maxSize]="totalPag" [collectionSize]="totalDocumentos"></ngb-pagination>
+
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-success m-4">Consultar</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="m-5" id="divTablaResultados" *ngIf="cargados">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Titulo</th>
+                    <th class="text-center">Url</th>
+                    <th class="text-center">IR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dto of ranking">
+                    <td>{{dto.documento.titulo}}</td>
+                    <td><a [href]="dto.documento.url">{{dto.documento.url}}</a></td>
+                    <td>{{dto.indiceRanking}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Paginador-->
+        <div id="divPaginador" class="col-sm-12 mt-3">
+            <div class="row bg-light">
+                <div class="col-sm-8">
+                    <ngb-pagination [(page)]="pagina" (pageChange)="buscarDocumentos()" [pageSize]="size"
+                        [maxSize]="totalPag" [collectionSize]="totalDocumentos"></ngb-pagination>
+                </div>
             </div>
         </div>
     </div>
+
 </div>

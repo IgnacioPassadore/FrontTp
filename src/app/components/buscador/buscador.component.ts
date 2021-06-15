@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BusquedasService } from 'src/app/services/BusquedasService';
 import { ConsultaRequest } from 'src/app/models/ConsultaRequest';
-import { Documento } from 'src/app/models/Documento';
 import { RankingDocumento } from 'src/app/models/RankingDocumento';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { BusquedaService } from 'src/app/services/busqueda.service';
 
 @Component({
   selector: 'app-buscador',
@@ -16,28 +15,37 @@ export class BuscadorComponent implements OnInit {
   //FormRes: FormGroup | undefined;
   ranking: RankingDocumento[]= [];
   totalPag: number =0;
+  size: number = 0;
   totalDocumentos:number=0;
   pagina: number=0;
   cargados:boolean=false;
-  constructor(public formBuilder: FormBuilder, private busquedaService: BusquedasService) { }
+  constructor(public formBuilder: FormBuilder, private busquedaService: BusquedaService) { }
 
   ngOnInit(): void {
-    //this.FormFiltro=this.formBuilder.group({consulta:[""]});
-    //this.FormRes = this.formBuilder.group({
-    //  Titulo: [""],
-    //  Url:[""],
-    //  IR:[null]});
+    
   }
+
   buscarDocumentos():void{
     let consultaRequest: ConsultaRequest = new ConsultaRequest();
     consultaRequest.consulta= this.FormFiltro?.controls.consulta.value;
-    consultaRequest.page= this.pagina;
+    consultaRequest.page=this.pagina - 1 < 0 ? 0 : this.pagina - 1;
+
+    console.log(consultaRequest.page);
+    
+
     this.busquedaService.BuscarDocumentos(consultaRequest).subscribe((data)=>{
-      this.ranking=data.content as RankingDocumento[];
-      this.totalPag=data.totalPages;
-      this.totalDocumentos=data.totalElements;
+      console.log(data);
+      
+      this.ranking=data.ranking.content as RankingDocumento[];
+      this.totalPag=data.ranking.totalPages;
+      this.size = data.ranking.size;
+      this.totalDocumentos=data.ranking.totalElements;
       this.cargados=true;
-    })
+    }, err => {
+      this.ranking = [];
+      this.cargados = false;
+      alert(err.error.mensaje);
+    });
   }
 
 }
