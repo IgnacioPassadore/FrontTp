@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IndexadorService } from 'src/app/services/indexador.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-indexador',
@@ -17,20 +18,30 @@ export class IndexadorComponent implements OnInit {
   }
 
   seleccionarDocumento(event: any) {
-    this.documentoSeleccionado = event.target.files[0];    
+    this.documentoSeleccionado = event.target.files[0];  
   }
 
   subirDocumento() {
     if (! this.documentoSeleccionado) {
-      alert('No se seleccionó el documeto');
+      Swal.fire({
+        text: 'No se seleccionó ningún documento',
+        icon: 'warning'
+      });
     } else {
-      console.log("algo");
       
-      this.indexadorService.subirDocumento(this.documentoSeleccionado).subscribe(response => {
+      this.indexadorService.subirDocumento(this.documentoSeleccionado).subscribe((response: any) => {
         console.log(response);
-        alert('Documento indexado con éxito');
+        Swal.fire({
+          text: response.mensaje,
+          icon: 'success'
+        });
       }, err => {
-        alert(err.error.error);
+        
+        Swal.fire({
+          title: err.error.mensaje,
+          text: err.error.error,
+          icon: 'error',
+        });
       })
     }
 

@@ -12,13 +12,14 @@ import { BusquedaService } from 'src/app/services/busqueda.service';
 export class BuscadorComponent implements OnInit {
 
   FormFiltro: FormGroup= this.formBuilder.group({consulta:[""]});
-  //FormRes: FormGroup | undefined;
   ranking: RankingDocumento[]= [];
   totalPag: number =0;
   size: number = 0;
   totalDocumentos:number=0;
   pagina: number=0;
-  cargados:boolean=false;
+  cargados:number=0;
+  msg: string = "";
+
   constructor(public formBuilder: FormBuilder, private busquedaService: BusquedaService) { }
 
   ngOnInit(): void {
@@ -40,11 +41,12 @@ export class BuscadorComponent implements OnInit {
       this.totalPag=data.ranking.totalPages;
       this.size = data.ranking.size;
       this.totalDocumentos=data.ranking.totalElements;
-      this.cargados=true;
+      this.cargados=1;
+
     }, err => {
       this.ranking = [];
-      this.cargados = false;
-      alert(err.error.mensaje);
+      this.cargados = 2;
+      this.msg = err.error.mensaje;
     });
   }
 

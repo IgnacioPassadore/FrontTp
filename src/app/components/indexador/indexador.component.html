@@ -1,10 +1,38 @@
-<div class="container">
-<div class="input-group mb-3">
-    <div class="custom-file">
-        <input (change)="seleccionarDocumento($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-activedescendant="inputGroupFileAddon04">
-        <label class="custom-file-label" for="inputGroupFile04">Seleccionar foto</label>
+<!-- <div class="container m-5">
+    <div class="col-sm-8 card">
+        <div class="card-body input-group mb-3">
+            <div class="custom-file">
+                <input (change)="seleccionarDocumento($event)" type="file" class="custom-file-input"
+                    id="inputGroupFile04" aria-activedescendant="inputGroupFileAddon04">
+                <label class="custom-file-label" for="inputGroupFile04">Seleccionar foto</label>
+            </div>
+            <div class="input-group-append">
+                <button (click)="subirDocumento()" [disabled]="!documentoSeleccionado" class="btn btn-sm btn-info mx-"
+                    type="button" id="inputGroupFileAddon04">Subir</button>
+            </div>
+        </div>
     </div>
-    <div class="input-group-append">
-        <button (click)="subirDocumento()" [disabled]="!documentoSeleccionado" class="btn btn-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
+</div> -->
+<div class="container">
+    <div class="form-group row text-center">
+        <img class="col-md-8 img-fluid d-blocks" style="width: 50%;" src="assets/img/logo-utn.png">
+    </div>
+    <div class="mt-5">
+        <div class="row">
+            
+            <div class="col-md-6 file-upload">
+                <div class="file-select">
+                    <div class="file-select-button" id="fileName">Examinar</div>
+                    <div class="file-select-name" id="noFile">{{documentoSeleccionado ? documentoSeleccionado.name :
+                        'Archivo no seleccionado'}}</div>
+                    <input (change)="seleccionarDocumento($event)" type="file" class="custom-file-input"
+                        id="inputGroupFile04" aria-activedescendant="inputGroupFileAddon04">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button (click)="subirDocumento()" [disabled]="!documentoSeleccionado" class="btn btn-outline-primary"
+                    type="button" id="inputGroupFileAddon04">Subir</button>
+            </div>
+        </div>
     </div>
 </div>

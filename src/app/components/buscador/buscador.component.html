@@ -1,4 +1,4 @@
-<div class="container-fluid bg-light">
+<div class="container-fluid bg-light pb-5">
     <form name="FormFiltro" [formGroup]='FormFiltro' (ngSubmit)="buscarDocumentos()">
         <div class="form-group row text-center">
             <img class="img-fluid mx-auto d-blocks" style="width: 50%;" src="assets/img/logo-utn.png">
@@ -10,13 +10,16 @@
             </div>
 
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-success m-4">Consultar</button>
+                <button type="submit" class="btn btn-primary m-4">Buscar</button>
             </div>
         </div>
     </form>
 
-    <div class="m-5" id="divTablaResultados" *ngIf="cargados">
-        <table class="table table-bordered table-striped">
+    <div class="m-3" id="divTablaResultados" *ngIf="cargados != 0">
+        <div *ngIf="cargados == 2" class="text-center mx-auto my-3 w-50 alert alert-primary" role="alert">
+            {{msg}}
+        </div>
+        <table class="table table-bordered table-striped" *ngIf="cargados == 1">
             <thead>
                 <tr>
                     <th class="text-center">Titulo</th>
@@ -33,7 +36,7 @@
             </tbody>
         </table>
         <!-- Paginador-->
-        <div id="divPaginador" class="col-sm-12 mt-3">
+        <div id="divPaginador" class="col-sm-12 mt-3" *ngIf="cargados == 1">
             <div class="row bg-light">
                 <div class="col-sm-8">
                     <ngb-pagination [(page)]="pagina" (pageChange)="buscarDocumentos()" [pageSize]="size"

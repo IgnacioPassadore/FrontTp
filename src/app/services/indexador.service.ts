@@ -16,6 +16,6 @@ export class IndexadorService {
     let formData = new FormData();
     formData.append("documento", documento);
 
-    return this.http.post(`${this.resourceUrl}/documentos/indexador`, formData, {responseType: 'text'});
+    return this.http.post(`${this.resourceUrl}/documentos/indexador`, formData);
   }
 }
